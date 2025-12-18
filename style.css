@@ -253,8 +253,10 @@ main {
   background: #fbfbfb;
   margin: 0 auto;
   min-height: 100vh;
-  gap: 16px;
-  height: 100%;
+  min-height: 100svh;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
 }
 
 .chat-sidebar {
@@ -616,6 +618,8 @@ main {
   height: 100%;
   display: flex;
   align-items: center;
+  position: relative;
+  margin-left: 16px;
   justify-content: center;
 }
 .chat-cnt-wrapper {
@@ -734,6 +738,9 @@ main {
   background: #386fde;
   color: #f6f6f6;
 }
+.p-chat-mobile-tools {
+  display: none;
+}
 
 @media (max-width: 1600px) {
 }
@@ -752,6 +759,7 @@ main {
     transition: 0.5s;
     border-radius: 0 16px 16px 0;
     overflow: auto;
+    z-index: 4;
   }
 
   .chat-sidebar::-webkit-scrollbar {
@@ -801,13 +809,25 @@ main {
     padding: 14px;
   }
   .chat-cnt-wrapper {
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    position: relative;
+    gap: 20px;
   }
   .chat-main-cnt {
     flex-direction: column;
+    gap: 10px;
+    min-height: 100%;
+    margin-left: unset;
+  }
+  .p-chat-mobile-tools {
+    flex: 0 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 
   .chat-search-wrapper {
@@ -817,15 +837,14 @@ main {
     background: #ffffff;
     border: 1px solid #e8e8e8;
     border-radius: 100px;
-    padding: 12px;
+    padding: 0 12px;
     gap: 8px;
     transition: 0.3s;
-    width: 95%;
-    left: 50%;
-    transform: translateX(-50%);
-    position: absolute;
-    bottom: 14px;
+    width: 100%;
     display: flex;
+  }
+  .chat-file-search input {
+    height: 46px;
   }
   .chat-search-wrapper-mobile.active {
     border-color: #4b7cff;
@@ -835,11 +854,8 @@ main {
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    position: absolute;
-    top: 14px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 95%;
+    width: 100%;
+    z-index: 2;
   }
   .chat-header-mobile .icon-chatBurger {
     font-size: 21px;
@@ -895,7 +911,7 @@ main {
   }
   .chat-categories {
     gap: 6px;
-    margin: 40px auto 0;
+    margin: 20px auto 0;
   }
   .chat-category-item {
     padding: 11px;
